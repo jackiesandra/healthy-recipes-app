@@ -1,0 +1,255 @@
+/* =========================
+   Healthy Recipes - Week 5
+   Mobile-first, responsive
+   ========================= */
+
+:root{
+  --bg: #0b1220;
+  --panel: #0f1a2e;
+  --card: #111f36;
+  --text: #e7eefc;
+  --muted: #a7b5d6;
+  --border: rgba(255,255,255,.12);
+  --accent: #22c55e; /* green */
+  --accent2: #16a34a;
+  --danger: #ef4444;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(34,197,94,.12), transparent 60%),
+              radial-gradient(800px 500px at 100% 10%, rgba(34,197,94,.08), transparent 50%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Header */
+.site-header{
+  position: sticky;
+  top:0;
+  z-index: 10;
+  background: rgba(11, 18, 32, .75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: .85rem 1rem;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+.brand h1{
+  font-size: 1.05rem;
+  margin:0;
+  letter-spacing: .2px;
+}
+.logo{
+  display:grid;
+  place-items:center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(34,197,94,.16);
+  border: 1px solid rgba(34,197,94,.25);
+}
+
+.nav{
+  display:flex;
+  gap:.65rem;
+}
+.nav-link{
+  text-decoration:none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: .95rem;
+  padding: .45rem .65rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+.nav-link:hover{
+  border-color: var(--border);
+  background: rgba(255,255,255,.04);
+}
+
+/* Layout */
+.container{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.site-footer{
+  text-align:center;
+  padding: 1.25rem;
+  color: var(--muted);
+}
+
+/* UI blocks */
+.card{
+  background: rgba(17,31,54,.75);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.section-title{
+  margin: 0 0 .5rem;
+  font-size: 1.05rem;
+}
+
+.muted{ color: var(--muted); }
+
+/* Search */
+.search-form{
+  display:flex;
+  gap:.6rem;
+  margin-top: .75rem;
+  flex-wrap: wrap;
+}
+.search-form input{
+  flex: 1 1 220px;
+  min-width: 220px;
+  padding: .8rem .9rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(10,18,33,.8);
+  color: var(--text);
+  outline: none;
+}
+.search-form input:focus{
+  border-color: rgba(34,197,94,.45);
+  box-shadow: 0 0 0 4px rgba(34,197,94,.14);
+}
+
+/* Buttons (subtle animation) */
+.btn{
+  cursor:pointer;
+  border: none;
+  border-radius: 14px;
+  padding: .8rem .95rem;
+  font-weight: 800;
+  color: #052e12;
+  background: linear-gradient(180deg, var(--accent), var(--accent2));
+  transition: transform .12s ease, opacity .12s ease;
+  white-space: nowrap;
+}
+.btn:hover{ transform: translateY(-1px); opacity: .96; }
+.btn:active{ transform: translateY(0px); opacity: .9; }
+
+.btn.ghost{
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn.danger{
+  background: var(--danger);
+  color: #fff;
+}
+
+/* Results grid */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.recipe-card{
+  background: rgba(17,31,54,.75);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  display:flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.recipe-card img{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.recipe-card h3{
+  margin: 0;
+  font-size: 1.02rem;
+}
+.recipe-card p{
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+.row{
+  margin-top: .4rem;
+  display:flex;
+  gap:.6rem;
+  align-items:center;
+}
+
+/* Details */
+.details img.hero{
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  margin: .8rem 0;
+}
+
+.split{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 860px){
+  .brand h1{ font-size: 1.2rem; }
+  .split{
+    grid-template-columns: 1.2fr .8fr;
+    align-items: start;
+  }
+}
+
+/* Lists */
+ul{
+  margin: .5rem 0 0;
+  padding-left: 1.1rem;
+}
+li{ margin: .2rem 0; }
+
+/* Helper link */
+.back-link{
+  display:inline-block;
+  margin-bottom: .75rem;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.25);
+}
+.back-link:hover{ border-bottom-color: rgba(34,197,94,.6); }
+
+/* Small badge */
+.badge{
+  display:inline-block;
+  padding: .3rem .55rem;
+  border-radius: 999px;
+  background: rgba(34,197,94,.14);
+  border: 1px solid rgba(34,197,94,.25);
+  color: var(--text);
+  font-weight: 700;
+  font-size: .85rem;
+}
