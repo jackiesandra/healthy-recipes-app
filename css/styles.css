@@ -1,5 +1,5 @@
 /* =========================
-   Healthy Recipes - Week 5
+   Healthy Recipes - Week 6
    Mobile-first, responsive
    ========================= */
 
@@ -44,18 +44,22 @@ body{
   align-items:center;
   justify-content: space-between;
   padding: .85rem 1rem;
+  gap: .75rem;
 }
 
 .brand{
   display:flex;
   align-items:center;
   gap:.6rem;
+  min-width: 180px;
 }
+
 .brand h1{
   font-size: 1.05rem;
   margin:0;
   letter-spacing: .2px;
 }
+
 .logo{
   display:grid;
   place-items:center;
@@ -69,16 +73,20 @@ body{
 .nav{
   display:flex;
   gap:.65rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
+
 .nav-link{
   text-decoration:none;
   color: var(--text);
-  font-weight: 600;
+  font-weight: 700;
   font-size: .95rem;
   padding: .45rem .65rem;
   border-radius: 12px;
   border: 1px solid transparent;
 }
+
 .nav-link:hover{
   border-color: var(--border);
   background: rgba(255,255,255,.04);
@@ -120,6 +128,7 @@ body{
   margin-top: .75rem;
   flex-wrap: wrap;
 }
+
 .search-form input{
   flex: 1 1 220px;
   min-width: 220px;
@@ -130,6 +139,7 @@ body{
   color: var(--text);
   outline: none;
 }
+
 .search-form input:focus{
   border-color: rgba(34,197,94,.45);
   box-shadow: 0 0 0 4px rgba(34,197,94,.14);
@@ -147,14 +157,25 @@ body{
   transition: transform .12s ease, opacity .12s ease;
   white-space: nowrap;
 }
+
 .btn:hover{ transform: translateY(-1px); opacity: .96; }
 .btn:active{ transform: translateY(0px); opacity: .9; }
+
+/* ✅ Accessibility focus state */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.search-form input:focus-visible,
+.back-link:focus-visible{
+  outline: 3px solid rgba(34,197,94,.55);
+  outline-offset: 3px;
+}
 
 .btn.ghost{
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text);
 }
+
 .btn.danger{
   background: var(--danger);
   color: #fff;
@@ -178,6 +199,7 @@ body{
   flex-direction: column;
   gap: .6rem;
 }
+
 .recipe-card img{
   width: 100%;
   height: 150px;
@@ -185,23 +207,43 @@ body{
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.08);
 }
+
+/* ✅ Placeholder when no image */
+.img-placeholder{
+  height: 150px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.04);
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .recipe-card h3{
   margin: 0;
   font-size: 1.02rem;
 }
+
 .recipe-card p{
   margin: 0;
   color: var(--muted);
   font-size: .95rem;
 }
+
 .row{
   margin-top: .4rem;
   display:flex;
   gap:.6rem;
   align-items:center;
+  flex-wrap: wrap; /* ✅ prevents overflow on small screens */
 }
 
 /* Details */
+.details{
+  display:block;
+}
+
 .details img.hero{
   width: 100%;
   max-height: 320px;
@@ -252,4 +294,17 @@ li{ margin: .2rem 0; }
   color: var(--text);
   font-weight: 700;
   font-size: .85rem;
+}
+
+/* ✅ Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce){
+  .btn{
+    transition: none;
+  }
+}
+/* Favorite button state */
+button[data-fav-state="saved"]{
+  background: transparent;
+  border: 1px solid rgba(34,197,94,.35);
+  color: var(--text);
 }

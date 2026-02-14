@@ -66,13 +66,41 @@ export const mockRecipes = [
   }
 ];
 
-// Simple search over mock data
+// ✅ Better search: title + ingredients + multi-word query + scoring
 export function searchMockRecipes(query) {
   const q = (query || "").trim().toLowerCase();
   if (!q) return [];
-  return mockRecipes.filter(r => r.title.toLowerCase().includes(q));
+
+  const terms = q.split(/\s+/).filter(Boolean);
+
+  const scored = mockRecipes
+    .map((r) => {
+      const title = (r.title || "").toLowerCase();
+      const ingredientsText = Array.isArray(r.ingredients)
+        ? r.ingredients.join(" ").toLowerCase()
+        : "";
+
+      let score = 0;
+
+      // Full phrase match in title is strongest
+      if (title.includes(q)) score += 5;
+
+      // Term matches in title / ingredients
+      for (const t of terms) {
+        if (title.includes(t)) score += 2;
+        if (ingredientsText.includes(t)) score += 1;
+      }
+
+      return { r, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((x) => x.r);
+
+  return scored;
 }
 
 export function getMockRecipeById(id) {
-  return mockRecipes.find(r => String(r.id) === String(id)) || null;
+  if (!id) return null;
+  return mockRecipes.find((r) => String(r.id) === String(id)) || null;
 }

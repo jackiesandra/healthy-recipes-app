@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Healthy Recipes SPA - search, view details, and save favorites." />
   <title>Healthy Recipes</title>
+
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="brand">
@@ -13,18 +16,26 @@
       <h1>Healthy Recipes</h1>
     </div>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
       <a class="nav-link" href="#/">Home</a>
       <a class="nav-link" href="#/favorites">Favorites</a>
     </nav>
   </header>
 
-  <main id="app" class="container" role="main"></main>
+  <main id="app" class="container" role="main">
+    <noscript>
+      <section class="card">
+        <h2 class="section-title">JavaScript Required</h2>
+        <p class="muted">This app needs JavaScript enabled to work.</p>
+      </section>
+    </noscript>
+  </main>
 
   <footer class="site-footer">
     <small>WDD 330 • Healthy Recipes 2026</small>
   </footer>
 
+  <!-- defer-like behavior because module scripts load deferred by default -->
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
