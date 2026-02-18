@@ -10,10 +10,13 @@
 </head>
 
 <body>
+  <!-- Accessibility: skip link -->
+  <a class="skip-link" href="#app">Skip to content</a>
+
   <header class="site-header">
-    <div class="brand">
+    <div class="brand" aria-label="Healthy Recipes home">
       <span class="logo" aria-hidden="true">🥗</span>
-      <h1>Healthy Recipes</h1>
+      <h1 class="brand-title">Healthy Recipes</h1>
     </div>
 
     <nav class="nav" aria-label="Primary navigation">
@@ -22,7 +25,7 @@
     </nav>
   </header>
 
-  <main id="app" class="container" role="main">
+  <main id="app" class="container" role="main" tabindex="-1">
     <noscript>
       <section class="card">
         <h2 class="section-title">JavaScript Required</h2>
@@ -35,7 +38,7 @@
     <small>WDD 330 • Healthy Recipes 2026</small>
   </footer>
 
-  <!-- defer-like behavior because module scripts load deferred by default -->
+  <!-- module scripts load deferred by default -->
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* =========================
-   Healthy Recipes - Week 6
+   Healthy Recipes - Week 6/7
    Mobile-first, responsive
    ========================= */
 
@@ -32,7 +32,40 @@ body{
   line-height: 1.5;
 }
 
-/* Header */
+/* Make media behave */
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   ✅ Skip link (accessibility)
+   ========================= */
+.skip-link{
+  position: absolute;
+  left: .75rem;
+  top: .75rem;
+  padding: .6rem .85rem;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0b1220;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  transform: translateY(-200%);
+  transition: transform .18s ease;
+  z-index: 9999;
+}
+.skip-link:focus{
+  transform: translateY(0);
+  outline: 3px solid rgba(34,197,94,.55);
+  outline-offset: 3px;
+}
+
+/* =========================
+   Header
+   ========================= */
 .site-header{
   position: sticky;
   top:0;
@@ -92,7 +125,9 @@ body{
   background: rgba(255,255,255,.04);
 }
 
-/* Layout */
+/* =========================
+   Layout
+   ========================= */
 .container{
   max-width: 1100px;
   margin: 0 auto;
@@ -105,7 +140,9 @@ body{
   color: var(--muted);
 }
 
-/* UI blocks */
+/* =========================
+   UI blocks
+   ========================= */
 .card{
   background: rgba(17,31,54,.75);
   border: 1px solid var(--border);
@@ -121,7 +158,9 @@ body{
 
 .muted{ color: var(--muted); }
 
-/* Search */
+/* =========================
+   Search
+   ========================= */
 .search-form{
   display:flex;
   gap:.6rem;
@@ -145,7 +184,9 @@ body{
   box-shadow: 0 0 0 4px rgba(34,197,94,.14);
 }
 
-/* Buttons (subtle animation) */
+/* =========================
+   Buttons (subtle animation)
+   ========================= */
 .btn{
   cursor:pointer;
   border: none;
@@ -181,7 +222,16 @@ body{
   color: #fff;
 }
 
-/* Results grid */
+/* Favorite button state */
+button[data-fav-state="saved"]{
+  background: transparent;
+  border: 1px solid rgba(34,197,94,.35);
+  color: var(--text);
+}
+
+/* =========================
+   Results grid
+   ========================= */
 .grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -239,7 +289,9 @@ body{
   flex-wrap: wrap; /* ✅ prevents overflow on small screens */
 }
 
-/* Details */
+/* =========================
+   Details
+   ========================= */
 .details{
   display:block;
 }
@@ -259,15 +311,9 @@ body{
   gap: 1rem;
 }
 
-@media (min-width: 860px){
-  .brand h1{ font-size: 1.2rem; }
-  .split{
-    grid-template-columns: 1.2fr .8fr;
-    align-items: start;
-  }
-}
-
-/* Lists */
+/* =========================
+   Lists
+   ========================= */
 ul{
   margin: .5rem 0 0;
   padding-left: 1.1rem;
@@ -296,15 +342,54 @@ li{ margin: .2rem 0; }
   font-size: .85rem;
 }
 
+/* =========================
+   ✅ Responsive improvements
+   ========================= */
+
+/* Big screens: split layout */
+@media (min-width: 860px){
+  .brand h1{ font-size: 1.2rem; }
+  .split{
+    grid-template-columns: 1.2fr .8fr;
+    align-items: start;
+  }
+}
+
+/* Small screens: make header stack neatly */
+@media (max-width: 520px){
+  .site-header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand{ min-width: unset; }
+
+  .nav{
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-link{
+    padding: .5rem .75rem;
+  }
+
+  .search-form input{
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  .btn{
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ✅ Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce){
   .btn{
     transition: none;
   }
-}
-/* Favorite button state */
-button[data-fav-state="saved"]{
-  background: transparent;
-  border: 1px solid rgba(34,197,94,.35);
-  color: var(--text);
+  .skip-link{
+    transition: none;
+  }
 }
